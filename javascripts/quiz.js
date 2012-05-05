@@ -77,7 +77,8 @@ var id =0;
 				now.setMinutes(m+3);				
 				$("#time").countdownui({
 					date: now, 
-					onComplete: function( event ) {											
+
+					onComplete: function( event ) {
 						QuizApp.main.set('questionCount',QuizApp.main.questions.content.length-1);
 						QuizApp.main.set('correctAnswerCount',score/10);
 						QuizApp.main.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));

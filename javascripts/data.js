@@ -103,10 +103,10 @@ QuizApp.Data.quiz = [
 
 							{
 							"scorePerQuestion" : "10",
-							"correctAnswerCount" : "4",
-							"wrongAnswerCount" : "6",		 
-							"userScore" : "40",
-							"questionCount":"30"							
+							"correctAnswerCount" : "0",
+							"wrongAnswerCount" : "0",		 
+							"userScore" : "0",
+							"questionCount":"0"							
 							},
 						];					
 

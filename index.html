@@ -75,7 +75,7 @@
 	  {{/unless}}	
 	   {{#unless QuizApp.main.questionViewVisible}}
           {{#view QuizApp.Views.Question questionBinding="question" }}
-				{{questionId}}	
+				{{questionId}}.
 				{{name}}  
 				{{#each questionOptions}}			 
 					{{view  Ember.RadioButton  title=option option=option }}										  

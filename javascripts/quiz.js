@@ -74,7 +74,7 @@ var id =0;
 				var fxs = "easeInBounce easeOutBounce easeInOutBounce jswing";
 				var now = new Date();
 				var m=now.getMinutes();
-				now.setMinutes(m+1);				
+				now.setMinutes(m+5);				
 				$("#time").countdownui({
 					date: now, // "january 7, 2013 20:34:00", //Counting up FROM a date
 					onComplete: function( event ) {

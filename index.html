@@ -49,9 +49,9 @@
 			  <div >
 			 
 				<table style="padding-top:10px;">
-				<th id="tableHeader"><u><b>Rules and Regulations for the Quiz</b></u></th>
+				<th id="tableHeader"><u><b>Rules for the Quiz</b></u></th>
 					<tr >
-						<td id="tableRow">The quiz consists of 10 multiple choice questions.</td>
+						<td id="tableRow">The quiz consists of {{questionCount}} multiple choice questions.</td>
 					</tr>
 					<tr>
 						<td id="tableRow">Each correct answer will fetch you 10 marks.</td>
@@ -60,11 +60,11 @@
 						<td id="tableRow">NO NEGATIVE marking for a wrong answer.</td>
 					</tr>
 					<tr>
-						<td id="tableRow">Select "Next" button to proceed.</td>
+						<td id="tableRow">Click "Start" button to start the quiz and "Next" button to proceed.</td>
 					</tr>
 					<tr>
-						<td id="tableRow">Click "Submit" to view the result.</td>
-					</tr>
+						<td id="tableRow">You have 3 mins to complete the quiz.</td>
+					</tr>					
 				</table>
 					
 			{{#view Em.Button target="QuizApp.main" id="start" action="start" class="startButton"}}
@@ -106,10 +106,13 @@
 					<td id="tableRow">Total Wrong Answer : {{wrongAnswerCount}}  </td>
 					</tr>
 					<tr>
-					<td id="tableRow">Total Score :  {{userScore}}	</td>
+					<td id="tableRow"><b>Total Score : {{userScore}}	</b> </td>
 					</tr>
 				</table>
-			</div>						
+			</div>	
+{{#view Em.Button target="QuizApp.main" id="next" action="submit" class="startButton"}}
+				Retake Quiz
+			{{/view}}			
 				{{/view}}	
 			{{/unless}}	
 			

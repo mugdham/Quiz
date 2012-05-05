@@ -18,7 +18,7 @@ var id =0;
     },
     initMapWithItemsApp: function() {	  
 	  //SA Quiz
-	   var questions, questionsArray,total=10, scorePerQuestion=10, questionCount=30,correctAnswerCount=0, wrongAnswerCount=0, userScore=0;
+	   var questions, questionsArray,total=0, scorePerQuestion=10, questionCount=0,correctAnswerCount=0, wrongAnswerCount=0, userScore=0;
 	   
 	  questions = this.Data.quiz.map(function(question) {
         return QuizApp.Models.Question.create(question);
@@ -74,11 +74,10 @@ var id =0;
 				var fxs = "easeInBounce easeOutBounce easeInOutBounce jswing";
 				var now = new Date();
 				var m=now.getMinutes();
-				now.setMinutes(m+5);				
+				now.setMinutes(m+3);				
 				$("#time").countdownui({
-					date: now, // "january 7, 2013 20:34:00", //Counting up FROM a date
-					onComplete: function( event ) {
-											
+					date: now, 
+					onComplete: function( event ) {											
 						QuizApp.main.set('questionCount',QuizApp.main.questions.content.length-1);
 						QuizApp.main.set('correctAnswerCount',score/10);
 						QuizApp.main.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));
@@ -94,7 +93,10 @@ var id =0;
 					minsOnly:true		
 				});			
 				
-		}			
+		},
+		submit:function(){
+			window.location.reload();
+		}		
 		
       });
     }
@@ -201,7 +203,7 @@ var id =0;
 	questionOptionsBinding: 'question.options'	
   });  
   
-   QuizApp.Views.Result = Ember.View.extend({   
+   QuizApp.Views.Result = Ember.View.extend({ 
    
 	scorePerQuestionBinding: 'QuizApp.main.scorePerQuestion',	
 	correctAnswerCountBinding: 'QuizApp.main.correctAnswerCount',

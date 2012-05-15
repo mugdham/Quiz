@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Quiz Application</title>
+    <link href="assets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/bootstrap_and_overrides.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/black-tie.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/charts.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/dashboard_app.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/generators.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/map_with_items.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/maps.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="javascripts/lib/jquery.js" type="text/javascript"></script>
+    <script src="javascripts/lib/jquery.mobile.js" type="text/javascript"></script>    
+    <script src="javascripts/lib/ember.js" type="text/javascript"></script>
+    <script src="javascripts/quiz.js" type="text/javascript"></script>
+	<script src="javascripts/data.js" type="text/javascript"></script>
+    <script type ="text/x-handlebars" data-template-name="app/templates/app">
+      <div>
+        <h2>{{ name }}</h2>        
+		 {{view DashboardApp.Views.Quiz questionsBinding="questions"}}
+      </div>
+    </script>	
+	<!-- SA QuizQ-->
+	<script type ="text/x-handlebars" data-template-name="app/templates/quiz">
+       <div id="quiz" class=''>
+      {{#each questions}}
+          {{#view DashboardApp.Views.Question nameBinding="this" }}
+		  {{name.question}}	
+		  {{view Em.RadioButton title=name.option1 option="1" group="default" valueBinding="App.radio1"}}
+		  {{view Em.RadioButton title=name.option2 option="2" group="default" valueBinding="App.radio1"}}
+		  {{view Em.RadioButton title=name.option3 option="3" group="default" valueBinding="App.radio1"}}
+          {{view Em.RadioButton title=name.option4 option="4" group="default" valueBinding="App.radio1"}}		      		   
+          {{/view}}
+        {{/each}} 		
+      </div>
+    </script>
+	<!-- EA QuizQ -->
+	</head>
+  <body>
+    <div class='container-fluid'>
+      <div class='row-fluid'>
+        <div class='span12'>
+          <!-- Stick the Ember App here -->
+          <script type='text/x-handlebars'>			
+            {{view DashboardApp.Views.App}}
+          </script>
+        </div>
+      </div>
+      <hr>
+      <footer>        
+      </footer>
+    </div>
+  </body>
+</html>

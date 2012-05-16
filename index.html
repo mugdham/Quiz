@@ -19,21 +19,24 @@
     <script type ="text/x-handlebars" data-template-name="app/templates/app">
       <div>
         <h2>{{ name }}</h2>        
-		 {{view DashboardApp.Views.Quiz questionsBinding="questions"}}
+		 {{view QuizApp.Views.Quiz questionBinding="question"}}
       </div>
     </script>	
 	<!-- SA QuizQ-->
 	<script type ="text/x-handlebars" data-template-name="app/templates/quiz">
        <div id="quiz" class=''>
-      {{#each questions}}
-          {{#view DashboardApp.Views.Question nameBinding="this" }}
-		  {{name.question}}	
-		  {{view Em.RadioButton title=name.option1 option="1" group="default" valueBinding="App.radio1"}}
-		  {{view Em.RadioButton title=name.option2 option="2" group="default" valueBinding="App.radio1"}}
-		  {{view Em.RadioButton title=name.option3 option="3" group="default" valueBinding="App.radio1"}}
-          {{view Em.RadioButton title=name.option4 option="4" group="default" valueBinding="App.radio1"}}		      		   
-          {{/view}}
-        {{/each}} 		
+      
+          {{#view QuizApp.Views.Question questionBinding="question" }}
+			  {{questionId}}	
+			  {{name}}  
+				{{#each questionOptions}}			 
+			      {{view  Ember.RadioButton  title=option option=option }}			  
+				{{/each}}
+               	  
+		   {{/view}}
+        {{#view Em.Button target="QuizApp.main" action="next"}}
+				Next
+			{{/view}}	
       </div>
     </script>
 	<!-- EA QuizQ -->
@@ -44,7 +47,7 @@
         <div class='span12'>
           <!-- Stick the Ember App here -->
           <script type='text/x-handlebars'>			
-            {{view DashboardApp.Views.App}}
+            {{view QuizApp.Views.App}}
           </script>
         </div>
       </div>

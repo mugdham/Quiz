@@ -1,15 +1,16 @@
 ;
 (function() {
-
-  window.DashboardApp = Ember.Application.create({
+var score =0;
+var id =0;
+  window.QuizApp = Ember.Application.create({
     Controllers: Ember.Namespace.create(),
     Models: Ember.Namespace.create(),
     Helpers: Ember.Namespace.create(),
     Views: Ember.Namespace.create(),
     Data: Ember.Namespace.create(),    
-
+	
     ready: function() {
-      this.config = DashboardApp.Models.Config.create({
+      this.config = QuizApp.Models.Config.create({
         content: this.Data.config
       });	  
       return this.initMapWithItemsApp();
@@ -18,17 +19,30 @@
 	  //SA Quiz
 	   var questions, questionsArray;	   
 	  questions = this.Data.quiz.map(function(question) {
-        return DashboardApp.Models.Question.create(question);
+        return QuizApp.Models.Question.create(question);
       });
-      questionsArray = DashboardApp.Models.Questions.create({
+      questionsArray = QuizApp.Models.Questions.create({
         content: questions
       });
 	  //EA QuizQ      
-      return this.main = DashboardApp.Controllers.Main.create({
+      return this.main = QuizApp.Controllers.Main.create({
        	//SA QuizQ
 		questions: questionsArray,
+		question:questionsArray.content[id],
 		//EA QuizQ       		
-		radio1: ""        
+		
+		next: function() {        
+		alert($("input[@name=default]:checked").val());	
+	    var userAnswer = $("input[@name=default]:checked").val();
+		var correctAnswer = this.question.correctAnswer;			
+			if(userAnswer == correctAnswer)
+			{
+				score = score + 10;				
+			}			
+			id= id+1;
+			this.set('question',questionsArray.content[id]);
+		alert(score);			
+		}			
       });
     }
   });
@@ -37,7 +51,7 @@
 
 (function() {
 
-  DashboardApp.Models.Config = Ember.Object.extend({
+  QuizApp.Models.Config = Ember.Object.extend({
     drilldownMetrics: (function() {
       return this.get('content').drilldownMetrics;
     }).property('content'),
@@ -67,79 +81,74 @@
     }).property('content')
   });
   
-  //SA Radio Buton
+  var set = Ember.set, get = Ember.get;
+  //SA Radio Buton    
   Ember.RadioButton = Ember.View.extend({
-  title: null,
-  checked: false,
-  group: "radio_button",
-  disabled: false,
+  title: null,  
+  group: "radio_button",  
   classNames: ['ember-radio-button'],
-  defaultTemplate: Ember.Handlebars.compile('<label><input type="radio" {{ bindAttr disabled="disabled" name="group" value="option" checked="checked"}} />{{title}}</label>'),
+  defaultTemplate: Ember.Handlebars.compile('<input type="radio" {{ bindAttr disabled="disabled" name="group" value="option" checked="checked"}} />{{title}}'),
   bindingChanged: function(){
    if(this.get("option") == get(this, 'value')){
        this.set("checked", true);
     }
-  }.observes("value"),    
+	else
+	{
+	this.set("checked", false);
+	}
+  }.observes("value"),   
   change: function() {
     Ember.run.once(this, this._updateElementValue);
   },
   _updateElementValue: function() {
-    var input = this.$('input:radio');
-    set(this, 'value', input.attr('value'));
+   var input = this.$('input:radio');
+   set(this, 'value', input.attr('value'));
   }
 });  
-  //EA Radio Button
+
+//EA Radio Button
   
   //SA QuizQ  
-  DashboardApp.Models.Questions = Ember.ArrayProxy.extend({
+  QuizApp.Models.Questions = Ember.ArrayProxy.extend({
     
   });
 
-  DashboardApp.Models.Question = Ember.Object.extend({
+  QuizApp.Models.Question = Ember.Object.extend({
     name: (function() {
       return this.get('question');
-    }).property('question'),
-	  value: (function() {
-      var currentQuestion;
-      currentQuestion = DashboardApp.main.get('currentQuestion');
-      return this.get(currentQuestion);
-    }).property(),
+    }).property('question')
+	  
   });
   //EA QuizQ
   
-  DashboardApp.Controllers.Main = Ember.Object.extend({
+  QuizApp.Controllers.Main = Ember.Object.extend({
     filters: []   
   });
 
-  DashboardApp.Views.App = Ember.View.extend({
-    nameBinding: 'DashboardApp.config.name',
-    typeBinding: 'DashboardApp.config.type',
-    mainBinding: 'DashboardApp.main',   
+  QuizApp.Views.App = Ember.View.extend({
+    nameBinding: 'QuizApp.config.name',
+    typeBinding: 'QuizApp.config.type',
+    mainBinding: 'QuizApp.main',   
 	//SA Quiz
-	questionsBinding :'main.questions',
+	questionBinding :'main.question',
 	//EA Quizs    
     templateName: 'app/templates/app'    
   });  
 
-   DashboardApp.Views.Question = Ember.View.extend({
+   QuizApp.Views.Question = Ember.View.extend({
    zoomedBinding: 'parentView.zoomed',
     nameBinding: 'question.name',
     classNames: ['question'],
     classNameBindings: ['statusName'],
-    attributeBindings: ['style'],	
-    click: function() {      
-      return false;
-    },
-	//SA title -- question
-	countryRank: (function() {
-      return this._parentView.content.get('question');
-    }).property('DashboardApp.main.currentQuestion')
+    attributeBindings: ['style'],
+	questionIdBinding: 'question.questionId',	
+	questionOptionsBinding: 'question.options'
 	
-	});
-//EA title -- question
 	
-	DashboardApp.Views.Quiz = Ember.View.extend({
-    mainBinding: 'DashboardApp.main',
+  });  
+  
+	QuizApp.Views.Quiz = Ember.View.extend({
+    mainBinding: 'QuizApp.main',
     templateName: 'app/templates/quiz'
   });
 

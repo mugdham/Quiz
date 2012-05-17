@@ -2,20 +2,44 @@
 <html lang='en'>
   <head>
     <meta charset='utf-8'>
-    <title>Quiz Application</title>
-    <link href="assets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/bootstrap_and_overrides.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/black-tie.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/charts.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/dashboard_app.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/generators.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/map_with_items.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/maps.css" media="all" rel="stylesheet" type="text/css" />
+    <title>Quiz Application</title>    
+	<link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="screen"/>
     <script src="javascripts/lib/jquery.js" type="text/javascript"></script>
-    <script src="javascripts/lib/jquery.mobile.js" type="text/javascript"></script>    
+    <link rel="stylesheet" type="text/css" href="stylesheets/style_count.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/jquery.jcountdown-ui.css" />
+	<script src="javascripts/jquery-1.7.js" type="text/javascript"></script>
+	<script src="javascripts/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="javascripts/jquery.jcountdown-ui.js" type="text/javascript"></script>
     <script src="javascripts/lib/ember.js" type="text/javascript"></script>
     <script src="javascripts/quiz.js" type="text/javascript"></script>
 	<script src="javascripts/data.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+		
+		var fxs = "easeInBounce easeOutBounce easeInOutBounce jswing";
+		var now = new Date();
+		var m=now.getMinutes();
+		now.setMinutes(m+10);
+		//alert(now);
+		$("#time").countdownui({
+			date: now, // "january 7, 2013 20:34:00", //Counting up FROM a date
+			onComplete: function( event ) {
+			
+				$(this).find(".ui-widget").html("Completed");
+			},
+			direction: 'down',
+			fx: 'turnDown',
+			yearsAndMonths: false,
+			minsOnly:true
+			
+		});
+	
+
+	
+});
+</script>
     <script type ="text/x-handlebars" data-template-name="app/templates/app">
       <div>
         <h2>{{ name }}</h2>        
@@ -30,30 +54,42 @@
 			  {{questionId}}	
 			  {{name}}  
 				{{#each questionOptions}}			 
-			      {{view  Ember.RadioButton  title=option option=option }}			  
-				{{/each}}
-               	  
+			      {{view  Ember.RadioButton  title=option option=option }}										  
+				{{/each}}               	  
 		   {{/view}}
-        {{#view Em.Button target="QuizApp.main" action="next"}}
+		   
+			{{#view Em.Button target="QuizApp.main" action="next"}}
 				Next
+			{{/view}}	
+			{{#view Em.Button target="QuizApp.main" action="submit"}}
+				Submit
+			{{/view}}
+			
+			{{#view QuizApp.Views.Result }}	
+				 {{questionCount}}					 
+				  {{scorePerQuestion}}  
+				  {{correctAnswerCount}}	
+				  {{wrongAnswerCount}}  
+				  {{userScore}}	
+				  	
 			{{/view}}	
       </div>
     </script>
 	<!-- EA QuizQ -->
 	</head>
-  <body>
-    <div class='container-fluid'>
-      <div class='row-fluid'>
-        <div class='span12'>
-          <!-- Stick the Ember App here -->
-          <script type='text/x-handlebars'>			
-            {{view QuizApp.Views.App}}
-          </script>
-        </div>
-      </div>
-      <hr>
-      <footer>        
-      </footer>
-    </div>
+<body style="background-image: url(images/bg.jpg);background-repeat: no-repeat;background-size:100%">
+	<div style="max-width:960px;height:100%;margin:auto;">  
+		  <div id="container" style="background-image: url(images/Template.jpg);background-repeat: no-repeat; background-size: 100%; padding-top:50px; ">	  
+			  <div id="header"></div>  
+			  <div id="content">			 
+				 <!-- Stick the Ember App here -->
+					  <script type='text/x-handlebars'>			
+						{{view QuizApp.Views.App}}
+					  </script> 		
+				<div class="time" id="time" style="float:right;"></div>  
+			  </div>
+			  <div id="footer"></div>
+		</div>      
+	</div>
   </body>
 </html>

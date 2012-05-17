@@ -17,7 +17,8 @@ var id =0;
     },
     initMapWithItemsApp: function() {	  
 	  //SA Quiz
-	   var questions, questionsArray;	   
+	   var questions, questionsArray,total=10, scorePerQuestion=20, questionCount=30,correctAnswerCount=0, wrongAnswerCount=0, userScore=0;
+	   
 	  questions = this.Data.quiz.map(function(question) {
         return QuizApp.Models.Question.create(question);
       });
@@ -29,20 +30,40 @@ var id =0;
        	//SA QuizQ
 		questions: questionsArray,
 		question:questionsArray.content[id],
-		//EA QuizQ       		
-		
+		//EA QuizQ    
+		scorePerQuestion: scorePerQuestion,	
+		correctAnswerCount:correctAnswerCount,
+		wrongAnswerCount: wrongAnswerCount,
+		userScore:userScore,
+		questionCount: questionCount,	
 		next: function() {        
-		alert($("input[@name=default]:checked").val());	
-	    var userAnswer = $("input[@name=default]:checked").val();
-		var correctAnswer = this.question.correctAnswer;			
-			if(userAnswer == correctAnswer)
+		var isRadioChecked=$("input[@name=default]:checked").val();
+		alert(isRadioChecked);
+			if(isRadioChecked != undefined)
 			{
-				score = score + 10;				
-			}			
-			id= id+1;
-			this.set('question',questionsArray.content[id]);
-		alert(score);			
-		}			
+				var userAnswer = $("input[@name=default]:checked").val();
+				var correctAnswer = this.question.correctAnswer;			
+				if(userAnswer == correctAnswer)
+				{
+					score = score + 10;				
+				}
+			}
+			if(id < QuizApp.main.questions.content.length - 1)
+			{
+					id= id+1;
+					this.set('question',questionsArray.content[id]);
+			}
+		},
+		submit: function() {		
+			if(score>0)
+			{			
+				this.set('correctAnswerCount',score/10);
+				this.set('wrongAnswerCount',10 - correctAnswerCount);
+				this.set('userScore',score);				
+			}		
+		
+		}	
+		
       });
     }
   });
@@ -87,7 +108,7 @@ var id =0;
   title: null,  
   group: "radio_button",  
   classNames: ['ember-radio-button'],
-  defaultTemplate: Ember.Handlebars.compile('<input type="radio" {{ bindAttr disabled="disabled" name="group" value="option" checked="checked"}} />{{title}}'),
+  defaultTemplate: Ember.Handlebars.compile('<input type="radio"  {{ bindAttr disabled="disabled" name="group" value="option" checked="checked"}} />{{title}}'),
   bindingChanged: function(){
    if(this.get("option") == get(this, 'value')){
        this.set("checked", true);
@@ -105,8 +126,7 @@ var id =0;
    set(this, 'value', input.attr('value'));
   }
 });  
-
-//EA Radio Button
+  //EA Radio Button
   
   //SA QuizQ  
   QuizApp.Models.Questions = Ember.ArrayProxy.extend({
@@ -120,7 +140,7 @@ var id =0;
 	  
   });
   //EA QuizQ
-  
+    
   QuizApp.Controllers.Main = Ember.Object.extend({
     filters: []   
   });
@@ -142,10 +162,18 @@ var id =0;
     classNameBindings: ['statusName'],
     attributeBindings: ['style'],
 	questionIdBinding: 'question.questionId',	
-	questionOptionsBinding: 'question.options'
-	
-	
+	questionOptionsBinding: 'question.options'	
   });  
+  
+   QuizApp.Views.Result = Ember.View.extend({   
+   
+	scorePerQuestionBinding: 'QuizApp.main.scorePerQuestion',	
+	correctAnswerCountBinding: 'QuizApp.main.correctAnswerCount',
+	wrongAnswerCountBinding: 'QuizApp.main.wrongAnswerCount',
+	userScoreBinding: 'QuizApp.main.userScore',
+	questionCountBinding: 'QuizApp.main.questionCount',	
+  });  
+  
   
 	QuizApp.Views.Quiz = Ember.View.extend({
     mainBinding: 'QuizApp.main',

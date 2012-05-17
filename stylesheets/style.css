@@ -1,0 +1,168 @@
+/* -------- Design -> Andrew Strojny -> http://www.andrewstrojny.com ------------ please do not remove ---------- */
+
+
+/* -----IE Hack----- */
+html { 
+	font-size: 100%; 
+}
+
+/* -----Body, Container, Header----- */
+
+body {
+	font-family: helvetica, arial, sans-serif;
+	text-align: center;	
+	font-size: .8em;
+	background-image: url(images/bg.jpg);
+	height:100%;
+}
+p
+{
+padding:0px;
+}
+#container {
+	margin-top: 5%;
+	width: 760px;	
+	text-align : left ;
+	margin-left : auto ;
+	margin-right : auto ;	
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+#header {	
+	padding: 5em 0 0 0;
+	text-align: center;	
+}
+
+/* -----Menu------Courtesy of CSS Play - http://www.cssplay.co.uk/menus/flickerfree_mk2.html------ */
+
+#menu {
+	position: relative; 
+	width: 600px; 
+	height: 50px; 
+	background: transparent url(images/menu.gif) 0 0 no-repeat; 
+	overflow: hidden; 	
+	margin: 2em auto 1em auto; 
+	z-index: 10;
+}
+
+#menu ul {
+	margin: 0; 
+	padding: 0;
+}
+
+#menu li {
+	list-style-type: none; 
+	display: inline; 
+	width: 100px;
+	height: 50px;
+}
+
+#menu a {
+	display: block; 
+	width: 100px; 
+	padding-top: 50px; 
+	height: 0; 
+	text-decoration: none; 
+	float: left; 
+	/*background: transparent url(images/menuhover.gif) -110px -60px no-repeat; */
+	overflow: hidden;
+	outline: none;
+}
+
+* html #menu a:link, * html #menu a:visited {height:50px; he\ight:0;}
+
+#menu a:hover {
+	background-position: top right;  
+	z-index: 50;
+}
+
+* html #menu a:hover {height:50px; he\ight:0;}
+
+#lbox {
+	width: 605px;
+}
+
+/* ------Main Content Box----- */
+
+#content {
+	width: 680px;
+	margin-left : auto;
+	margin-right : auto;
+	padding:0 0 2.5em 0;    
+}
+
+/* -----Content Header----- */
+
+#content span.content_title {
+	padding-left: 1em;
+	font-family: Times, serif;
+	font-size: 1.6em;
+	font-style: italic;
+	margin-left: 1em;
+}
+
+/* ------Round Inner Content Box------ Courtesy of http://kalsey.com/2003/07/rounded_corners_in_css/ ------- */
+
+.roundcont {
+	width: 100%;
+	background-color: white;
+	border-radius: 20px;
+}
+
+.roundcont p {
+	margin: 1em 2em;
+}
+
+
+.roundtop { 
+	
+}
+
+.roundbottom {
+	
+}
+
+img.corner {
+   	width: 19px;
+   	height: 19px;
+   	border: none;
+   	display: block !important;
+}
+
+/* -----Float Images----- */
+
+.floatright {
+	margin: 0 2em 0 0;
+	float: right;
+}
+
+.floatleft {
+	float:left;
+}
+
+/* -----List----- */
+
+.list {
+	margin: 0 0 0 2.5em;
+	padding: 0 0 0 2.5em;
+}
+
+/* -----Links----- */
+
+a {
+	color: #3C035A;
+	outline: none;
+}
+
+a:hover {
+	background-color: #3C035A;
+	color: #EFDBFF;
+	outline: none;
+}
+
+/* -----Footer----- */
+
+#footer {
+	clear: both;
+
+}

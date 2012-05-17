@@ -1,0 +1,67 @@
+/*
+* jCountdown UI 1.0 jQuery Widget CSS
+* Copyright 2012 Tom Ellis http://www.webmuse.co.uk
+* MIT Licensed (license.txt)
+*/
+
+.jc-ui > div {
+	position: relative;
+	overflow: hidden;
+	float: left;
+	height:25px;
+	z-index: 5;
+}
+
+/* This is used for certain fx animations */
+.jc-ui > .jc-rel {
+	position: relative;
+	overflow: visible;
+}
+
+.jc-ui > div > p {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	padding:0.2em 0.1em;
+}
+
+.jc-ui > div > p.jui-first{
+	z-index: 3;
+	top: 0;
+}
+
+.jc-ui > div > p.jui-last {
+	z-index: 2;
+	top: -25px;
+}
+
+/* Edit these as you need them */
+.jc-ui.ui-widget{
+    display: inline-block;
+    height: 25px;
+	z-index:4;
+}
+
+.jc-ui-years {
+	width: 80px;
+}
+
+.jc-ui-months {
+	width: 80px;
+}
+
+.jc-ui-days {
+	width: 80px;
+}
+
+.jc-ui-hours{
+	width: 90px;
+}
+
+.jc-ui-minutes{
+	width: 110px;
+}
+
+.jc-ui-seconds{
+	width:85px;
+}

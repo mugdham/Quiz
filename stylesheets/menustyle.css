@@ -1,0 +1,50 @@
+
+
+.dropmenu {
+   position: absolute;
+   left: -1500px;
+   visibility: visible;
+   z-index: 101;
+   float: left;
+   width: 0px;
+
+   border-width: px;
+   border-style: solid;
+   border-color: ;	
+   background-color: ;
+}
+.dropmenu ul {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+.dropmenu li {
+   display: inline;
+}
+.dropmenu a, .dropmenu a:visited, .dropmenu a:active {
+   display: block;
+   width: px;
+
+   padding: px;
+   margin: px;
+   font-family: ;
+   font-size: px;
+   font-weight: ;
+   text-align: ;
+   text-decoration: ;
+
+   color: ;
+   background-color: ;
+}
+.dropmenu a:hover {
+   padding: px;
+   margin: px;
+   font-family: ;
+   font-size: px;
+   font-weight: ;
+   text-align: ;
+   text-decoration: ;
+
+   color: ;
+   background-color: ;
+}

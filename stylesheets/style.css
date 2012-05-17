@@ -10,10 +10,10 @@ html {
 
 body {
 	font-family: helvetica, arial, sans-serif;
-	text-align: center;	
 	font-size: .8em;
 	background-image: url(images/bg.jpg);
 	height:100%;
+	padding-left:100px;
 }
 p
 {
@@ -165,4 +165,119 @@ a:hover {
 #footer {
 	clear: both;
 
+}
+/*-----Table List-----*/
+#tableHeader {
+	color:#15317E;
+	font-size:large;
+	padding-top:100px; 
+}
+#tableRow {
+	color:#15317E;
+	font-size:large;
+	padding-top:20px; 
+	padding-left:80px;
+}
+
+
+
+.startButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5d93e3), color-stop(1, #072857) );
+	background:-moz-linear-gradient( center top, #5d93e3 5%, #072857 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d93e3', endColorstr='#072857');
+	background-color:#5d93e3;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	border:2px solid #a29fd1;
+	display:inline-block;
+	color:#f7f7f7;
+	font-family:arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:14px 76px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #020d1f;
+}.startButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #072857), color-stop(1, #5d93e3) );
+	background:-moz-linear-gradient( center top, #072857 5%, #5d93e3 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#072857', endColorstr='#5d93e3');
+	background-color:#072857;
+}.startButton:active {
+	position:relative;
+	top:1px;
+}
+
+.radioContent {
+	color:#15317E;
+	font-size:large;
+	padding-top:20px; 
+	padding-left:80px;
+}
+/* Next Button */
+
+.nextButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5d93e3), color-stop(1, #072857) );
+	background:-moz-linear-gradient( center top, #5d93e3 5%, #072857 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d93e3', endColorstr='#072857');
+	background-color:#5d93e3;
+	-moz-border-radius:22px;
+	-webkit-border-radius:22px;
+	border-radius:22px;
+	border:2px solid #a29fd1;
+	display:inline-block;
+	color:#f7f7f7;
+	font-family:arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:10px 37px;
+	margin-top:70px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #020d1f;
+}.nextButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #072857), color-stop(1, #5d93e3) );
+	background:-moz-linear-gradient( center top, #072857 5%, #5d93e3 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#072857', endColorstr='#5d93e3');
+	background-color:#072857;
+}.nextButton:active {
+	position:relative;
+	top:1px;
+}
+
+/*Submit Button */
+.submitButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	box-shadow:inset 0px 1px 0px 0px #b2c1db;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5d93e3), color-stop(1, #072857) );
+	background:-moz-linear-gradient( center top, #5d93e3 5%, #072857 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d93e3', endColorstr='#072857');
+	background-color:#5d93e3;
+	-moz-border-radius:22px;
+	-webkit-border-radius:22px;
+	border-radius:22px;
+	border:2px solid #a29fd1;
+	display:inline-block;
+	color:#f7f7f7;
+	font-family:arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:10px 37px;
+	margin-top:70px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #020d1f;
+}.submitButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #072857), color-stop(1, #5d93e3) );
+	background:-moz-linear-gradient( center top, #072857 5%, #5d93e3 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#072857', endColorstr='#5d93e3');
+	background-color:#072857;
+}.submitButton:active {
+	position:relative;
+	top:1px;
 }

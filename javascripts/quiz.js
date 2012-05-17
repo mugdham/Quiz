@@ -35,10 +35,10 @@ var id =0;
 		correctAnswerCount:correctAnswerCount,
 		wrongAnswerCount: wrongAnswerCount,
 		userScore:userScore,
-		questionCount: questionCount,	
+		questionCount: questionCount,
+		viewVisible:true,
 		next: function() {        
-		var isRadioChecked=$("input[@name=default]:checked").val();
-		alert(isRadioChecked);
+		var isRadioChecked=$("input[@name=default]:checked").val();		
 			if(isRadioChecked != undefined)
 			{
 				var userAnswer = $("input[@name=default]:checked").val();
@@ -53,14 +53,20 @@ var id =0;
 					id= id+1;
 					this.set('question',questionsArray.content[id]);
 			}
+			if(id == QuizApp.main.questions.content.length - 2)
+			{
+				$("#next").hide();
+				$("#submit").show();		
+			}
 		},
 		submit: function() {		
 			if(score>0)
 			{			
 				this.set('correctAnswerCount',score/10);
 				this.set('wrongAnswerCount',10 - correctAnswerCount);
-				this.set('userScore',score);				
-			}		
+				this.set('userScore',score);
+				this.set('viewVisible', false);
+			}
 		
 		}	
 		
@@ -108,7 +114,7 @@ var id =0;
   title: null,  
   group: "radio_button",  
   classNames: ['ember-radio-button'],
-  defaultTemplate: Ember.Handlebars.compile('<input type="radio"  {{ bindAttr disabled="disabled" name="group" value="option" checked="checked"}} />{{title}}'),
+  defaultTemplate: Ember.Handlebars.compile('<input type="radio" style="width:2em; margin-top:2em;" {{ bindAttr disabled="disabled" name="group" value="option" checked="checked"}} />{{title}}'),
   bindingChanged: function(){
    if(this.get("option") == get(this, 'value')){
        this.set("checked", true);
@@ -137,6 +143,10 @@ var id =0;
     name: (function() {
       return this.get('question');
     }).property('question')
+	  
+  });
+  
+  QuizApp.Views.FirstPage = Ember.View.extend({  
 	  
   });
   //EA QuizQ

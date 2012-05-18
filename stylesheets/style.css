@@ -170,7 +170,12 @@ a:hover {
 #tableHeader {
 	color:#15317E;
 	font-size:large;
-	padding-top:100px; 
+	padding-top:30px; 
+}
+#tableHeader1 {
+	color:#15317E;
+	font-size:large;
+	padding-top:80px; 
 }
 #tableRow {
 	color:#15317E;
@@ -189,16 +194,18 @@ a:hover {
 	background:-moz-linear-gradient( center top, #5d93e3 5%, #072857 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d93e3', endColorstr='#072857');
 	background-color:#5d93e3;
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-	border-radius:8px;
+	-moz-border-radius:22px;
+	-webkit-border-radius:22px;
+	border-radius:22px;
 	border:2px solid #a29fd1;
 	display:inline-block;
 	color:#f7f7f7;
 	font-family:arial;
-	font-size:20px;
+	font-size:14px;
 	font-weight:bold;
-	padding:14px 76px;
+	padding:10px 57px;
+	margin-left: 250px;
+	margin-top:50px;
 	text-decoration:none;
 	text-shadow:1px 1px 0px #020d1f;
 }.startButton:hover {

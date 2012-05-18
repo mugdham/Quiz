@@ -1,3 +1,4 @@
+
 ;
 (function() {
 var score =0;
@@ -17,7 +18,7 @@ var id =0;
     },
     initMapWithItemsApp: function() {	  
 	  //SA Quiz
-	   var questions, questionsArray,total=10, scorePerQuestion=20, questionCount=30,correctAnswerCount=0, wrongAnswerCount=0, userScore=0;
+	   var questions, questionsArray,total=10, scorePerQuestion=10, questionCount=30,correctAnswerCount=0, wrongAnswerCount=0, userScore=0;
 	   
 	  questions = this.Data.quiz.map(function(question) {
         return QuizApp.Models.Question.create(question);
@@ -37,13 +38,15 @@ var id =0;
 		userScore:userScore,
 		questionCount: questionCount,
 		viewVisible:true,
+		questionViewVisible:true,
+		startViewVisible:false,
 		next: function() {        
 		var isRadioChecked=$("input[@name=default]:checked").val();		
 			if(isRadioChecked != undefined)
 			{
 				var userAnswer = $("input[@name=default]:checked").val();
 				var correctAnswer = this.question.correctAnswer;			
-				if(userAnswer == correctAnswer)
+				if(userAnswer === correctAnswer)
 				{
 					score = score + 10;				
 				}
@@ -60,15 +63,41 @@ var id =0;
 			}
 		},
 		submit: function() {		
-			if(score>0)
-			{			
+				
+				this.set('questionCount',QuizApp.main.questions.content.length-1);				
 				this.set('correctAnswerCount',score/10);
-				this.set('wrongAnswerCount',10 - correctAnswerCount);
-				this.set('userScore',score);
-				this.set('viewVisible', false);
-			}
-		
-		}	
+				this.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));
+				this.set('userScore',score);				
+				this.set('questionViewVisible', true);
+				this.set('viewVisible', false);			
+		},
+
+		start: function() {						
+				this.set('questionViewVisible', false);	
+				this.set('startViewVisible', true);						
+				var fxs = "easeInBounce easeOutBounce easeInOutBounce jswing";
+				var now = new Date();
+				var m=now.getMinutes();
+				now.setMinutes(m+1);				
+				$("#time").countdownui({
+					date: now, // "january 7, 2013 20:34:00", //Counting up FROM a date
+					onComplete: function( event ) {
+					
+						$(this).find(".ui-widget").html("Completed");
+						QuizApp.main.set('questionCount',QuizApp.main.questions.content.length-1);
+						QuizApp.main.set('correctAnswerCount',score/10);
+						QuizApp.main.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));
+						QuizApp.main.set('userScore',score);				
+						QuizApp.main.set('questionViewVisible', true);
+						QuizApp.main.set('viewVisible', false);		
+					},
+					direction: 'down',
+					fx: 'turnDown',
+					yearsAndMonths: false,
+					minsOnly:true		
+				});			
+				
+		}			
 		
       });
     }
@@ -146,7 +175,7 @@ var id =0;
 	  
   });
   
-  QuizApp.Views.FirstPage = Ember.View.extend({  
+  QuizApp.Views.StartPage = Ember.View.extend({  
 	  
   });
   //EA QuizQ

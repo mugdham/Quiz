@@ -14,27 +14,25 @@
 	<script src="javascripts/data.js" type="text/javascript"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		
-		var fxs = "easeInBounce easeOutBounce easeInOutBounce jswing";
-		var now = new Date();
-		var m=now.getMinutes();
-		now.setMinutes(m+10);
-		//alert(now);
-		$("#time").countdownui({
-			date: now, // "january 7, 2013 20:34:00", //Counting up FROM a date
-			onComplete: function( event ) {
-			
-				$(this).find(".ui-widget").html("Completed");
-			},
-			direction: 'down',
-			fx: 'turnDown',
-			yearsAndMonths: false,
-			minsOnly:true
-			
-		});
-	
-
-	
+				
+				/*$("#start").click(function () {			
+				var fxs = "easeInBounce easeOutBounce easeInOutBounce jswing";
+				var now = new Date();
+				var m=now.getMinutes();
+				now.setMinutes(m+10);
+				//alert(now);
+				$("#time").countdownui({
+					date: now, // "january 7, 2013 20:34:00", //Counting up FROM a date
+					onComplete: function( event ) {
+					
+						$(this).find(".ui-widget").html("Completed");
+					},
+					direction: 'down',
+					fx: 'turnDown',
+					yearsAndMonths: false,
+					minsOnly:true		
+				});	
+			});	*/	
 });
 	</script>
 	    <script type ="text/x-handlebars" data-template-name="app/templates/app">
@@ -46,31 +44,79 @@
 	<!-- SA QuizQ-->
 		<script type ="text/x-handlebars" data-template-name="app/templates/quiz">
        <div id="quiz" class='' isVisible=false>
-      
+       {{#unless QuizApp.main.startViewVisible}}
+	   {{#view QuizApp.Views.StartPage }}
+			  <div >
+			 
+				<table style="padding-top:10px;">
+				<th id="tableHeader"><u><b>Rules and Regulations for the Quiz</b></u></th>
+					<tr >
+						<td id="tableRow">The quiz consists of 10 multiple choice questions.</td>
+					</tr>
+					<tr>
+						<td id="tableRow">Each correct answer will fetch you 10 marks.</td>
+					</tr>
+					<tr>
+						<td id="tableRow">NO NEGATIVE marking for a wrong answer.</td>
+					</tr>
+					<tr>
+						<td id="tableRow">Select "Next" button to proceed.</td>
+					</tr>
+					<tr>
+						<td id="tableRow">Click "Submit" to view the result.</td>
+					</tr>
+				</table>
+					
+			{{#view Em.Button target="QuizApp.main" id="start" action="start" class="startButton"}}
+				Start
+			{{/view}}					
+			</div>
+		{{/view}}
+	  {{/unless}}	
+	   {{#unless QuizApp.main.questionViewVisible}}
           {{#view QuizApp.Views.Question questionBinding="question" }}
-			  {{questionId}}	
-			  {{name}}  
+				{{questionId}}	
+				{{name}}  
 				{{#each questionOptions}}			 
-			      {{view  Ember.RadioButton  title=option option=option }}										  
+					{{view  Ember.RadioButton  title=option option=option }}										  
 				{{/each}}               	  
-		   {{/view}}
+				{{/view}}
 		   
 			{{#view Em.Button target="QuizApp.main" id="next" action="next" class="nextButton"}}
 				Next
-			{{/view}}	
+			{{/view}}
+	
 			{{#view Em.Button target="QuizApp.main" id="submit" isVisible=false action="submit" class="submitButton"}}
 				Submit
 			{{/view}}
+			
+		 {{/unless}}
+	 
 			{{#unless QuizApp.main.viewVisible}}
-				{{#view QuizApp.Views.Result}}	
-					 {{questionCount}}					 
-					  {{scorePerQuestion}}  
-					  {{correctAnswerCount}}	
-					  {{wrongAnswerCount}}  
-					  {{userScore}}	
-						
+				{{#view QuizApp.Views.Result}}				
+				<div style="margin-top:0px;">
+				<table style="padding-top:10px;">
+					<tr><td id="tableRow"><u><b>Result of the Quiz</b></u></td></tr>
+					<tr >
+					<td id="tableRow">Total Questions: {{questionCount}}</td>
+					</tr>
+					<tr>
+					<td id="tableRow">Score per question: {{scorePerQuestion}}   marks</td>
+					</tr>
+					<tr>
+					<td id="tableRow">Total Correct Answer : {{correctAnswerCount}}	</td>
+					</tr>
+					<tr>
+					<td id="tableRow">Total Wrong Answer : {{wrongAnswerCount}}  </td>
+					</tr>
+					<tr>
+					<td id="tableRow">Total Score :  {{userScore}}	</td>
+					</tr>
+				</table>
+			</div>						
 				{{/view}}	
-			{{/unless}}				
+			{{/unless}}	
+			
       </div>	  
     </script>
 	<!-- EA QuizQ -->
@@ -81,13 +127,14 @@
 <div id="header1" >
 </div>
 <div id="content" style="background-image: url(images/Template.jpg);width:90%;height:75%;background-repeat: no-repeat; background-size: 100%; padding-top:60px; margin-top:100px;" >
-					<div id="tableHeader" style="margin-left:100px;">
+					<div id="tableHeader1" style="margin-left:100px;">
 					<script type='text/x-handlebars'>			
-						{{view QuizApp.Views.App}}
-					  </script> 		
-					</div>					
+						{{view QuizApp.Views.App}}						
+					  </script> 					  
+					</div>	
 <div class="time" id="time" style="float:right;padding-top:30px; padding-right:80px"></div>
 </div>
+
 <div id="footer"></div>
 </div>
 </body>

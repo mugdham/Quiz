@@ -56,22 +56,17 @@ var id =0;
 					id= id+1;
 					this.set('question',questionsArray.content[id]);
 			}
-			if(id == QuizApp.main.questions.content.length - 2)
-			{
-				$("#next").hide();
-				$("#submit").show();		
-			}
-		},
-		submit: function() {		
-				
+			if(id == QuizApp.main.questions.content.length - 1)
+			{				
 				this.set('questionCount',QuizApp.main.questions.content.length-1);				
 				this.set('correctAnswerCount',score/10);
 				this.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));
 				this.set('userScore',score);				
 				this.set('questionViewVisible', true);
-				this.set('viewVisible', false);			
+				this.set('viewVisible', false);						
+			}
 		},
-
+		
 		start: function() {						
 				this.set('questionViewVisible', false);	
 				this.set('startViewVisible', true);						
@@ -82,8 +77,7 @@ var id =0;
 				$("#time").countdownui({
 					date: now, // "january 7, 2013 20:34:00", //Counting up FROM a date
 					onComplete: function( event ) {
-					
-						$(this).find(".ui-widget").html("Completed");
+											
 						QuizApp.main.set('questionCount',QuizApp.main.questions.content.length-1);
 						QuizApp.main.set('correctAnswerCount',score/10);
 						QuizApp.main.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));

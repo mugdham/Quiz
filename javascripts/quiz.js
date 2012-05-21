@@ -63,7 +63,8 @@ var id =0;
 				this.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));
 				this.set('userScore',score);				
 				this.set('questionViewVisible', true);
-				this.set('viewVisible', false);						
+				this.set('viewVisible', false);		
+				$("#time").hide();				
 			}
 		},
 		

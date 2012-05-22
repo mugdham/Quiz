@@ -84,7 +84,9 @@ var id =0;
 						QuizApp.main.set('wrongAnswerCount',((QuizApp.main.questions.content.length-1) - (score/10)));
 						QuizApp.main.set('userScore',score);				
 						QuizApp.main.set('questionViewVisible', true);
-						QuizApp.main.set('viewVisible', false);		
+						QuizApp.main.set('viewVisible', false);	
+						$("#time").hide();		
+							
 					},
 					direction: 'down',
 					fx: 'turnDown',

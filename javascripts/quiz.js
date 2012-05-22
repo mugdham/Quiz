@@ -74,7 +74,7 @@ var id =0;
 				var fxs = "easeInBounce easeOutBounce easeInOutBounce jswing";
 				var now = new Date();
 				var m=now.getMinutes();
-				now.setMinutes(m+5);				
+				now.setMinutes(m+3);				
 				$("#time").countdownui({
 					date: now, 
 					onComplete: function( event ) {
